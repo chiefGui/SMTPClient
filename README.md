@@ -1,16 +1,18 @@
 SMTP Client [![Build Status](https://travis-ci.org/andreyknupp/SMTPClient.png?branch=master)](https://travis-ci.org/andreyknupp/SMTPClient)
 ===========
-Just a powerful *Service Mail Transfer Protocol* (SMTP) client to send mail messages. <br />
-*"This is a specific guy for send mail messages over SMTP, isn't a universal mailer that covers all methods for sending a mail*"
+Just a powerful *Service Mail Transfer Protocol* (SMTP) client to send mail messages.
+*"This is a specific mate to send mail messages over SMTP. It isn't a universal mailer that cover all methods for sending an email*"
 
-How it works.
+How it works
 ---------------------------
-In a simple and robustly way, you could send mail messages using SMTP servers, 
-firstly you need to create an connection, and perform authentication for the user, after that, send the message, and done.
+In a simple and robustly way, you could send mail messages using SMTP servers.
 
-Firstly we need a SMTP server, we'll use the gmail server. 
+The first thing you need to do is to create a connection, and then perform authentication for the user. After that, send the message and you are done.
+
+Firstly, we need a SMTP server. In this case, we'll use the Gmail server. 
+
 Using the settings from "Outgoing Mail (SMTP) Server" from [Google](https://support.google.com/mail/answer/13287), 
-we'll perform the connection and authentication for the user.
+we'll perform the connection and authentication for the user:
 
 ```PHP
 <?php
@@ -25,8 +27,10 @@ use utils\net\SMTP\Message; // the message
 $client = new Client(new SSLConnection("smtp.gmail.com", 465));
 $client->authenticate(new Login("user@gmail.com", "pswd"));
 ```
-With that, we're connected and probably authenticated (if you replaced the **user@gmail.com** and **pswd** with valid credentials). <br />
-Then, just send the message.
+
+With that, we're connected and probably authenticated (if you replaced the **user@gmail.com** and **pswd** with valid credentials, you are good to go).
+
+Then, just send the message:
 ```PHP
 $message = new Message();
 $message->from("user@gmail.com") // sender
@@ -36,24 +40,25 @@ $message->from("user@gmail.com") // sender
 
 echo $client->send($message) ? "Message sent" : "Opz";
 ```
-Be happy if the message was sent. <br />
-Otherwise, you can open a issue [here](https://github.com/andreyknupp/SMTPClient/issues/new) if you can't identify the problem type (e.g: credentials, connection [host, port]) to resolve it.
 
-How i could use/test ?
+If the message is sent, be happy! Otherwise, if you cannot identify the kind of your problem (e.g: credentials, connection [host, port]), you can open an issue [here](https://github.com/andreyknupp/SMTPClient/issues/new).
+
+How could I use it/test it?
 ----------------------
-Firstly, clone the repository.
+Firstly, clone the repository through:
 ```bash
 $ git clone git://github.com/andreyknupp/SMTPClient.git
 $ cd SMTPClient/
 ```
-Switch the current directory to SMTPClient directory.
+Switch the current directory to SMTPClient directory:
 ```bash
 $ cd SMTPClient/
 ```
-Install dependencies via composer.
+Install dependencies via composer:
 ```bash
 $ curl -s http://getcomposer.org/installer | php
 $ php composer.phar install
 ```
-Performing unit tests isn't possible currently, but in the future, you can. <br />
-Thanks, you're free to contribute with anything you think can.
+
+At the moment, performing unit tests aren't possible. In the future, you'll be able to do them.
+For now, thank you. Feel free to contribute with anything you think you can.
